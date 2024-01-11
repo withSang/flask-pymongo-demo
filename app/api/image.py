@@ -30,13 +30,13 @@ response_model = api.model('Image', {
 class Image(Resource):
     """
     Demo Image Generator API
-    Echos the url
+    Returns random image URL
     """
     @api.expect(prompt_parser)
     @api.response(200, 'Successed', response_model)
     def get(self):
         """
-        Echo a message
+        Returns random image URL
         """
         args = prompt_parser.parse_args()
         user_id = args['user_id']
