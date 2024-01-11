@@ -10,4 +10,4 @@ RUN pip install -r requirements.txt
 # Copying actuall application
 COPY . /app/src/
 
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "server:app", "-k", "gevent"]
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "server:app", "-k", "gevent"]

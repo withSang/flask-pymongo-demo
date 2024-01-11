@@ -1,12 +1,18 @@
 from flask import Flask
-from config import Config
 
-from app.api import echo_blueprint
+from config import Config
+from database import mongo
+from app.api import echo_blueprint, image_blueprint
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
-    app.register_blueprint(echo_blueprint)
+    # Database initialization
+    mongo.init_app(app)
+
+    # Register blueprints
+    app.register_blueprint(echo_blueprint, url_prefix="/echo")
+    app.register_blueprint(image_blueprint, url_prefix="/image")
 
     return app

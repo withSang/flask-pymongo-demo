@@ -10,16 +10,14 @@ api = Api(
     version='1.0',
     title='Echo API',
     description='A simple Echo API',
-    doc="/echo/docs"
+    doc="/docs"
 )
-
-ns = api.namespace('echo', description='Echo operations')
 
 echo_model = api.model('Echo', {
     'message': fields.String(required=True, description='Message to echo'),
 })
 
-@ns.route("/")
+@api.route("/")
 class Echo(Resource):
     """
     Demo Echo API

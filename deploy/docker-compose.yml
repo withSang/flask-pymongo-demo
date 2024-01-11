@@ -1,1 +1,32 @@
 version: "3.8"
+services:
+  api:
+    container_name: api
+    networks:
+      - backend
+    restart: unless-stopped
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/demo
+    ports:
+      - "${DOCKER_API_PORT:-8080}:8080"
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    volumes:
+      - demo_mongo_data:/data/db
+    networks:
+      - backend
+    restart: unless-stopped
+    ports:
+      - "${DOCKER_DB_PORT:-27017}:27017"
+
+volumes:
+  demo_mongo_data:
+
+networks:
+  backend:
