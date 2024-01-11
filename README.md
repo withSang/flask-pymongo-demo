@@ -12,5 +12,7 @@
 - Docker 20+ with docker-compose
 
 ## Deploy with Docker
-
-$ docker compose -f deploy/docker-compose.yml --env-file=.env up --build -d
+1. Execute the command in the command line.
+  ```bash
+  $ docker compose -f deploy/docker-compose.yml --env-file=.env up --build -d
+  ```
