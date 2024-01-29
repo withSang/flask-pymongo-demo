@@ -11,8 +11,17 @@
 
 - Docker 20+ with docker-compose
 
-## Deploy with Docker
-1. Execute the command in the command line.
+## Run Local Server
+
+- This command will start a local server at `http://localhost:5024`
   ```bash
-  $ docker compose -f deploy/docker-compose.yml --env-file=.env up --build -d
+  $ gunicorn -b 0.0.0.0:5024 server:app --timeout 120
   ```
+
+## Deploy with Docker
+
+1. Execute the command in the command line.
+
+```bash
+$ docker compose -f deploy/docker-compose.yml --env-file=.env up --build -d
+```
